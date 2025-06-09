@@ -1,8 +1,13 @@
-## 🛒 Projeto ETL - Brazilian E-Commerce Public Dataset (Olist)
+## 📍 Radar de Entrega – Análise de Atrasos por Região
 
-Este projeto tem como objetivo principal o estudo e a implementação prática de um pipeline ETL robusto, com foco em conceitos fundamentais de qualidade de dados, validação estruturada, registro de logs e coleta de métricas de execução. Utilizando o dataset público de e-commerce brasileiro da Olist (disponível no Kaggle), o projeto simula um fluxo real de tratamento de dados, abordando desde a extração e transformação até a carga e monitoramento, permitindo aplicar na prática os princípios de engenharia de dados e preparação analítica.
+Este projeto implementa um pipeline ETL com foco em **qualidade de dados**, **validação**, **métricas** e **visualização geográfica** da performance logística no e-commerce brasileiro, utilizando esse dataset público da Olist.
 
 ---
+
+### 🎯 Objetivo
+
+Avaliar a **performance de entrega por região** (estado e cidade), identificando gargalos logísticos através da análise de atrasos nas entregas. O projeto inclui:
+
 
 ## 🛠️ Tecnologias e Bibliotecas
 
