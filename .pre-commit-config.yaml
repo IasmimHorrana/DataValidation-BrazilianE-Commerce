@@ -1,0 +1,24 @@
+# Este arquivo configura os ganchos (hooks) que o pre-commit vai rodar
+repos:
+  # Black: formata o código automaticamente
+  - repo: https://github.com/psf/black
+    rev: 24.3.0  # versão estável do Black
+    hooks:
+      - id: black
+        language_version: python3  # usa a versão ativa do Python
+
+  # isort: verifica se as importações estão organizadas corretamente
+  - repo: https://github.com/pycqa/isort
+    rev: 5.12.0
+    hooks:
+      - id: isort
+        args: ["--check-only"]  # Só verifica, não altera o código
+        language_version: python3
+
+  # flake8: analisa o código em busca de problemas (ex: linhas muito grandes, variáveis não usadas)
+  - repo: https://github.com/pycqa/flake8
+    rev: 6.1.0
+    hooks:
+      - id: flake8
+        additional_dependencies: ["flake8-bugbear"]  # Plugin com alertas úteis
+        language_version: python3
