@@ -11,14 +11,15 @@ Avaliar a **performance de entrega por região** (estado e cidade), identificand
 
 ## 🛠️ Tecnologias e Bibliotecas
 
-| Finalidade         | Ferramenta/Biblioteca     |
-|--------------------|---------------------------|
-| Manipulação de dados | `pandas`                 |
-| Validação de DataFrames | `pandera`           |
-| Registro de logs   | `logging` |
-| Cálculo de métricas | `time`, `datetime`       |
-| Documentação        | `README.md`   |
-| Visualização/KPIs   | `Streamlit`
+| Finalidade           | Ferramenta/Biblioteca     |
+|----------------------|---------------------------|
+| Manipulação de dados  | `pandas`                  |
+| Validação de DataFrames | `pandera`               |
+| Registro de logs      | `loguru`                  |
+| Cálculo de métricas   | `time`, `datetime`        |
+| Documentação          | `MkDocs`                  |
+| Visualização/KPIs     | `Streamlit`               |
+| Testes                | `pytest`                  |
 
 ---
 
