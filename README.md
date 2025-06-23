@@ -13,13 +13,13 @@ Avaliar a **performance de entrega por região** (estado e cidade), identificand
 
 | Finalidade           | Ferramenta/Biblioteca     |
 |----------------------|---------------------------|
-| Manipulação de dados  | `pandas`                  |
-| Validação de DataFrames | `pandera`               |
-| Registro de logs      | `loguru`                  |
-| Cálculo de métricas   | `time`, `datetime`        |
+| Manipulação de dados  | `Pandas`                  |
+| Validação dos Dados | `Pydantic `               |
+| Registro de logs      | `Loguru`                  |
+| Cálculo de métricas   | `Time`, `Datetime`        |
 | Documentação          | `MkDocs`                  |
 | Visualização/KPIs     | `Streamlit`               |
-| Testes                | `pytest`                  |
+| Testes                | `Pytest`                  |
 
 ---
 
