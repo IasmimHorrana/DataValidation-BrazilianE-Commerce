@@ -4,22 +4,43 @@ Este projeto implementa um pipeline ETL com foco em **qualidade de dados**, **va
 
 ---
 
+### 🔍 Análise Exploratória Inicial
+
+Utilizamos o `ydata-profiling` para gerar perfis automáticos de cada CSV, identificando:
+- Colunas com valores ausentes
+- Duplicatas
+- Anomalias
+- Distribuições por região
+
+Esses perfis foram fundamentais para entender a estrutura dos dados e guiar a definição das regras de validação aplicadas posteriormente.
+
+---
+
 ### 🎯 Objetivo
 
 Avaliar a **performance de entrega por região** (estado e cidade), identificando gargalos logísticos através da análise de atrasos nas entregas. O projeto inclui:
 
+---
 
 ## 🛠️ Tecnologias e Bibliotecas
 
 | Finalidade           | Ferramenta/Biblioteca     |
 |----------------------|---------------------------|
 | Manipulação de dados  | `Pandas`                  |
-| Validação dos Dados | `Pydantic `               |
+| Validação dos Dados   | `Pydantic`                |
 | Registro de logs      | `Loguru`                  |
 | Cálculo de métricas   | `Time`, `Datetime`        |
 | Documentação          | `MkDocs`                  |
 | Visualização/KPIs     | `Streamlit`               |
 | Testes                | `Pytest`                  |
+
+---
+
+### 📋 Modelagem e Regras de Validação
+
+As regras de validação foram implementadas com `Pydantic`, por meio de três classes principais:  `Customer`, `Order` e `OrderItem`, que representam as estruturas dos respectivos arquivos CSV.
+
+⚠️ As regras foram definidas com base na análise exploratória dos dados (via ydata-profiling) e hipóteses lógicas, já que o projeto é autoral e sem especificações oficiais de negócio.
 
 ---
 
@@ -37,6 +58,3 @@ Avaliar a **performance de entrega por região** (estado e cidade), identificand
 ### 📚 Fonte dos Dados
 
 Kaggle: [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
-
-
-
