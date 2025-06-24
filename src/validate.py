@@ -67,19 +67,20 @@ class Order(BaseModel):
 
     # Validação extra: data estimada deve ser >= data da compra
 
+    @field_validator("order_estimated_delivery_date")
+    def valida_estimativa_maior_que_compra(cls, v, info):
+        purchase = info.data.get("order_purchase_timestamp")
+        if purchase and v < purchase:
+            raise ValueError(
+                "order_estimated_delivery_date deve ser >="
+                "order_purchase_timestamp"
+            )
+        return v
 
-@field_validator("order_estimated_delivery_date")
-def valida_estimativa_maior_que_compra(cls, v, info):
-    purchase = info.data.get("order_purchase_timestamp")
-    if purchase and v < purchase:
-        raise ValueError(
-            "order_estimated_delivery_date deve ser >="
-            "order_purchase_timestamp"
-        )
-    return v
-
-
-model_config = ConfigDict(validate_default=True, validate_assignment=True)
+    model_config = ConfigDict(
+        validate_default=True,
+        validate_assignment=True,
+    )
 
 
 class OrderItem(BaseModel):
