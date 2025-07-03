@@ -56,6 +56,16 @@ def filtrar_order_status_valido(pedidos_validos):
     return pedidos_validos
 
 
+def converter_order_purchase_timestamp(df: pd.DataFrame) -> pd.DataFrame:
+    """
+    Converte a coluna 'order_purchase_timestamp' para datetime padrão pandas.
+    """
+    df["order_purchase_timestamp"] = pd.to_datetime(
+        df["order_purchase_timestamp"], errors="coerce", dayfirst=True
+    )
+    return df
+
+
 def remove_registros_com_order_purchase_timestamp_nulo(pedidos_validos):
     """
     Remove pedidos cujo 'order_purchase_timestamp' é nulo.
