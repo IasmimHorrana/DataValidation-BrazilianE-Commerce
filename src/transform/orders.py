@@ -36,8 +36,8 @@ def filtrar_orders_validos(df_merge):
 
 def filtrar_order_status_valido(pedidos_validos):
     """
-    Filtra pedidos para manter somente aqueles cujo 'order_status' está
-    entre os valores permitidos.
+    Filtra pedidos mantendo apenas os que possuem 'order_status'
+    em uma lista válida.
     """
     pedidos_validos = pedidos_validos[
         pedidos_validos["order_status"].isin(
@@ -58,7 +58,7 @@ def filtrar_order_status_valido(pedidos_validos):
 
 def converter_order_purchase_timestamp(df: pd.DataFrame) -> pd.DataFrame:
     """
-    Converte a coluna 'order_purchase_timestamp' para datetime padrão pandas.
+    Converte a coluna 'order_purchase_timestamp' para datetime.
     """
     df["order_purchase_timestamp"] = pd.to_datetime(
         df["order_purchase_timestamp"], errors="coerce", dayfirst=True
@@ -68,7 +68,7 @@ def converter_order_purchase_timestamp(df: pd.DataFrame) -> pd.DataFrame:
 
 def remove_registros_com_order_purchase_timestamp_nulo(pedidos_validos):
     """
-    Remove pedidos cujo 'order_purchase_timestamp' é nulo.
+    Remove registros com 'order_purchase_timestamp' nulo.
     """
     pedidos_validos = pedidos_validos[
         pedidos_validos["order_purchase_timestamp"].notna()
@@ -78,8 +78,8 @@ def remove_registros_com_order_purchase_timestamp_nulo(pedidos_validos):
 
 def verifica_data_estimada(pedidos_validos):
     """
-    Cria coluna 'data_ok' que indica se a data estimada de entrega
-    é não nula e maior ou igual à data da compra.
+    Cria coluna 'data_ok' que valida se 'order_estimated_delivery_date'
+    não é nulo e é maior ou igual a 'order_purchase_timestamp'.
     """
     pedidos_validos["data_ok"] = pedidos_validos[
         "order_estimated_delivery_date"
@@ -92,8 +92,8 @@ def verifica_data_estimada(pedidos_validos):
 
 def verifica_aprovacao_status(pedidos_validos):
     """
-    Cria coluna 'aprovacao_valida' indicando se o campo 'order_approved_at'
-    está coerente com o status do pedido.
+    Cria coluna 'aprovacao_valida' que valida se o campo 'order_approved_at'
+    está presente nos pedidos cujo status exige aprovação.
     """
     status_que_exigem_aprovacao = [
         "approved",
@@ -111,10 +111,12 @@ def verifica_aprovacao_status(pedidos_validos):
 
 def transformar_orders(df_orders, df_customers):
     """
-    Aplica todas as transformações e validações no DataFrame de pedidos,
-    utilizando dados dos clientes para validação.
+    Aplica todas as transformações e validações ao DataFrame de pedidos,
+    utilizando dados de clientes para consistência de relacionamento.
+    Retorna dois DataFrames: pedidos válidos e pedidos inválidos.
     """
     df_orders = filtrar_order_id_deve_ser_unico(df_orders)
+    df_orders = converter_order_purchase_timestamp(df_orders)
     df_merge = customer_id_existe_em_customers(df_orders, df_customers)
     pedidos_validos, pedidos_invalidos = filtrar_orders_validos(df_merge)
     pedidos_validos = filtrar_order_status_valido(pedidos_validos)
