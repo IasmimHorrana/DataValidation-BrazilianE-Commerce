@@ -50,10 +50,11 @@ def converter_shipping_limit_date(df_merge):
 
 def converter_order_purchase_timestamp(df_merge):
     """
-    Converte a coluna order_purchase_timestamp para datetime.
+    Converte a coluna order_purchase_timestamp para datetime,
+    considerando formato dia/mês/ano.
     """
     df_merge["order_purchase_timestamp"] = pd.to_datetime(
-        df_merge["order_purchase_timestamp"]
+        df_merge["order_purchase_timestamp"], dayfirst=True, errors="coerce"
     )
     return df_merge
 
@@ -87,6 +88,8 @@ def transformar_order_items(df_order_items, df_orders):
     Função principal que aplica todas as transformações de limpeza e validação
     """
     df_merge = merge_order_items_orders(df_order_items, df_orders)
+    # Filtra somente linhas com order_id presente em df_orders
+    df_merge = df_merge[df_merge["_merge"] == "both"].copy()
     df_merge = filtrar_order_item_id_valido(df_merge)
     df_merge = filtrar_product_id_valido(df_merge)
     df_merge = filtrar_seller_id_valido(df_merge)
@@ -96,4 +99,4 @@ def transformar_order_items(df_order_items, df_orders):
     df_merge = filtrar_price_positivo(df_merge)
     df_merge = filtrar_freight_value_positivo(df_merge)
 
-    return df_merge
+    return df_merge.drop(columns=["_merge"])
