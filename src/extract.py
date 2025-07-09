@@ -1,36 +1,18 @@
 import pandas as pd
 
-from src.logger_config import logger
+from src.decorators.log_extraction import log_csv_extraction
 
 
+@log_csv_extraction("logs/extract/extract_customers.log")
 def ler_csv_customers(path: str) -> pd.DataFrame:
-    logger.info(f"Iniciando leitura do arquivo: {path}")
-    try:
-        df = pd.read_csv(path, sep=";")
-        logger.success(f"Leitura concluída com sucesso. Linhas: {len(df)}")
-        return df
-    except Exception as e:
-        logger.error(f"Erro ao ler {path}: {e}")
-        raise
+    return pd.read_csv(path, sep=";")
 
 
+@log_csv_extraction("logs/extract/extract_orders.log")
 def ler_csv_orders(path: str) -> pd.DataFrame:
-    logger.info(f"Iniciando leitura do arquivo: {path}")
-    try:
-        df = pd.read_csv(path, sep=";")
-        logger.success(f"Leitura concluída com sucesso. Linhas: {len(df)}")
-        return df
-    except Exception as e:
-        logger.error(f"Erro ao ler {path}: {e}")
-        raise
+    return pd.read_csv(path, sep=";")
 
 
+@log_csv_extraction("logs/extract/extract_order_items.log")
 def ler_csv_order_items(path: str) -> pd.DataFrame:
-    logger.info(f"Iniciando leitura do arquivo: {path}")
-    try:
-        df = pd.read_csv(path, sep=";")
-        logger.success(f"Leitura concluída com sucesso. Linhas: {len(df)}")
-        return df
-    except Exception as e:
-        logger.error(f"Erro ao ler {path}: {e}")
-        raise
+    return pd.read_csv(path, sep=";")
