@@ -1,6 +1,9 @@
 import pandas as pd
 
+from src.decorators.logging_utils import log_dataset
 
+
+@log_dataset("orders")
 def filtrar_order_id_deve_ser_unico(df_orders):
     """
     Remove duplicatas com base em 'order_id' e filtra registros
@@ -11,6 +14,7 @@ def filtrar_order_id_deve_ser_unico(df_orders):
     return df_orders
 
 
+@log_dataset("orders")
 def customer_id_existe_em_customers(df_orders, df_customers):
     """
     Realiza merge para verificar se 'customer_id' em pedidos existe
@@ -22,6 +26,7 @@ def customer_id_existe_em_customers(df_orders, df_customers):
     return df_merge
 
 
+@log_dataset("orders")
 def filtrar_orders_validos(df_merge):
     """
     Separa pedidos com 'customer_id' inválido e retorna DataFrames de
@@ -34,6 +39,7 @@ def filtrar_orders_validos(df_merge):
     return pedidos_validos, pedidos_invalidos
 
 
+@log_dataset("orders")
 def filtrar_order_status_valido(pedidos_validos):
     """
     Filtra pedidos mantendo apenas os que possuem 'order_status'
@@ -56,6 +62,7 @@ def filtrar_order_status_valido(pedidos_validos):
     return pedidos_validos
 
 
+@log_dataset("orders")
 def converter_order_purchase_timestamp(df: pd.DataFrame) -> pd.DataFrame:
     """
     Converte a coluna 'order_purchase_timestamp' para datetime.
@@ -66,6 +73,7 @@ def converter_order_purchase_timestamp(df: pd.DataFrame) -> pd.DataFrame:
     return df
 
 
+@log_dataset("orders")
 def remove_registros_com_order_purchase_timestamp_nulo(pedidos_validos):
     """
     Remove registros com 'order_purchase_timestamp' nulo.
@@ -76,6 +84,7 @@ def remove_registros_com_order_purchase_timestamp_nulo(pedidos_validos):
     return pedidos_validos
 
 
+@log_dataset("orders")
 def verifica_data_estimada(pedidos_validos):
     """
     Cria coluna 'data_ok' que valida se 'order_estimated_delivery_date'
@@ -90,6 +99,7 @@ def verifica_data_estimada(pedidos_validos):
     return pedidos_validos
 
 
+@log_dataset("orders")
 def verifica_aprovacao_status(pedidos_validos):
     """
     Cria coluna 'aprovacao_valida' que valida se o campo 'order_approved_at'
@@ -109,6 +119,7 @@ def verifica_aprovacao_status(pedidos_validos):
     return pedidos_validos
 
 
+@log_dataset("orders")
 def transformar_orders(df_orders, df_customers):
     """
     Aplica todas as transformações e validações ao DataFrame de pedidos,
