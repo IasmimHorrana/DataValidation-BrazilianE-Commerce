@@ -1,3 +1,7 @@
+from src.decorators.logging_utils import log_dataset
+
+
+@log_dataset("customers")
 def filtrar_customer_id(df):
     """
     Filtra registros com customer_id de exatamente 32 caracteres.
@@ -7,6 +11,7 @@ def filtrar_customer_id(df):
     return df[df["customer_id"].str.len() == 32]
 
 
+@log_dataset("customers")
 def filtrar_customer_unique_id(df):
     """
     Filtra registros com customer_unique_id de exatamente 32 caracteres.
@@ -16,6 +21,7 @@ def filtrar_customer_unique_id(df):
     return df[df["customer_unique_id"].str.len() == 32]
 
 
+@log_dataset("customers")
 def filtrar_customer_zip_code_valido(df):
     """
     Filtra códigos postais que estejam dentro de um intervalo plausível
@@ -27,6 +33,7 @@ def filtrar_customer_zip_code_valido(df):
     ]
 
 
+@log_dataset("customers")
 def filtrar_customer_city_valido(df):
     """
     Mantém apenas cidades válidas, não nulas e com nome mínimo de 3 caracteres.
@@ -37,6 +44,7 @@ def filtrar_customer_city_valido(df):
     ]
 
 
+@log_dataset("customers")
 def filtrar_customer_state_duas_letras(df):
     """
     Valida que o estado está em formato abreviado de 2 letras (sigla).
@@ -45,6 +53,7 @@ def filtrar_customer_state_duas_letras(df):
     return df[df["customer_state"].str.len() == 2]
 
 
+@log_dataset("customers")
 def transformar_customers(df):
     """
     Aplica todas as transformações e filtros no DataFrame de customers.
