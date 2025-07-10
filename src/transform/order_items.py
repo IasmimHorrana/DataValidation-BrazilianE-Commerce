@@ -1,6 +1,9 @@
 import pandas as pd
 
+from src.decorators.logging_utils import log_dataset
 
+
+@log_dataset("order_items")
 def merge_order_items_orders(df_order_items, df_orders):
     """
     Realiza merge para validar se os order_id em order_items existem em orders.
@@ -11,6 +14,7 @@ def merge_order_items_orders(df_order_items, df_orders):
     return df_merge
 
 
+@log_dataset("order_items")
 def filtrar_order_item_id_valido(df_merge):
     """
     Filtra registros onde order_item_id é maior ou igual a 1.
@@ -18,6 +22,7 @@ def filtrar_order_item_id_valido(df_merge):
     return df_merge[df_merge["order_item_id"] >= 1]
 
 
+@log_dataset("order_items")
 def filtrar_product_id_valido(df_merge):
     """
     Remove registros com product_id nulo ou string vazia.
@@ -28,6 +33,7 @@ def filtrar_product_id_valido(df_merge):
     ]
 
 
+@log_dataset("order_items")
 def filtrar_seller_id_valido(df_merge):
     """
     Remove registros com seller_id nulo ou string vazia.
@@ -38,6 +44,7 @@ def filtrar_seller_id_valido(df_merge):
     ]
 
 
+@log_dataset("order_items")
 def converter_shipping_limit_date(df_merge):
     """
     Converte a coluna shipping_limit_date para datetime.
@@ -48,6 +55,7 @@ def converter_shipping_limit_date(df_merge):
     return df_merge
 
 
+@log_dataset("order_items")
 def converter_order_purchase_timestamp(df_merge):
     """
     Converte a coluna order_purchase_timestamp para datetime,
@@ -59,6 +67,7 @@ def converter_order_purchase_timestamp(df_merge):
     return df_merge
 
 
+@log_dataset("order_items")
 def filtrar_shipping_limit_date_valida(df_merge):
     """
     Filtra registros onde shipping_limit_date é maior ou igual
@@ -69,6 +78,7 @@ def filtrar_shipping_limit_date_valida(df_merge):
     ]
 
 
+@log_dataset("order_items")
 def filtrar_price_positivo(df_merge):
     """
     Remove registros com price menor ou igual a zero.
@@ -76,6 +86,7 @@ def filtrar_price_positivo(df_merge):
     return df_merge[df_merge["price"] > 0]
 
 
+@log_dataset("order_items")
 def filtrar_freight_value_positivo(df_merge):
     """
     Remove registros com freight_value menor ou igual a zero.
@@ -83,6 +94,7 @@ def filtrar_freight_value_positivo(df_merge):
     return df_merge[df_merge["freight_value"] > 0]
 
 
+@log_dataset("order_items")
 def transformar_order_items(df_order_items, df_orders):
     """
     Função principal que aplica todas as transformações de limpeza e validação
