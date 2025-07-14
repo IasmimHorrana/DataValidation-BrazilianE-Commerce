@@ -1,6 +1,6 @@
 ## 📍 Radar de Entrega – Análise de Atrasos por Região
 
-Este projeto implementa um pipeline ETL com foco em **qualidade de dados**, **validação**, **métricas** e **visualização geográfica** da performance logística no e-commerce brasileiro, utilizando esse dataset público da Olist.
+Este projeto implementa um pipeline ETL com foco em **qualidade de dados**, **validação**, e **visualização geográfica** da performance logística no e-commerce brasileiro, utilizando esse dataset público da Olist.
 
 ---
 
@@ -28,11 +28,10 @@ Avaliar a **performance de entrega por região** (estado e cidade), identificand
 |----------------------|---------------------------|
 | Manipulação de dados  | `Pandas`                  |
 | Validação dos Dados   | `Pydantic`                |
+| Testes                | `Pytest`                  |
 | Registro de logs      | `Loguru`                  |
-| Cálculo de métricas   | `Time`, `Datetime`        |
 | Documentação          | `MkDocs`                  |
 | Visualização/KPIs     | `Streamlit`               |
-| Testes                | `Pytest`                  |
 
 ---
 
@@ -48,9 +47,8 @@ As regras de validação foram implementadas com `Pydantic`, por meio de três c
 
 - ✅ Realizar **extração** dos dados públicos (CSV)
 - ✅ Aplicar **validações estruturadas** para garantir qualidade
-- ✅ Realizar **transformações** úteis (limpeza, formatação, enriquecimento)
+- ✅ Realizar **transformações** úteis (limpeza, formatação)
 - ✅ **Registrar logs** para cada etapa
-- ✅ Gerar **métricas simples** de execução e qualidade
 - ✅ Preparar os dados para **análises exploratórias e criação de KPIs**
 
 ---
