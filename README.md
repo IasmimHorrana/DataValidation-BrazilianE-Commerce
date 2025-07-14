@@ -1,6 +1,6 @@
 ## 📍 Radar de Entrega – Análise de Atrasos por Região
 
-Este projeto implementa um pipeline ETL com foco em **qualidade de dados**, **validação**, e **visualização geográfica** da performance logística no e-commerce brasileiro, utilizando esse dataset público da Olist.
+Este projeto implementa um pipeline ETL com foco em **qualidade de dados**, **validação** e **visualização geográfica** da performance logística no e-commerce brasileiro, utilizando esse dataset público da Olist.
 
 ---
 
