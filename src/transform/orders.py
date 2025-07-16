@@ -119,6 +119,20 @@ def verifica_aprovacao_status(pedidos_validos):
     return pedidos_validos
 
 
+# função genérica para converter todas essas colunas para datetime.
+@log_dataset("orders")
+def converter_colunas_de_data(df: pd.DataFrame) -> pd.DataFrame:
+    colunas = [
+        "order_approved_at",
+        "order_delivered_carrier_date",
+        "order_delivered_customer_date",
+        "order_estimated_delivery_date",
+    ]
+    for coluna in colunas:
+        df[coluna] = pd.to_datetime(df[coluna], errors="coerce", dayfirst=True)
+    return df
+
+
 @log_dataset("orders")
 def transformar_orders(df_orders, df_customers):
     """
@@ -128,6 +142,7 @@ def transformar_orders(df_orders, df_customers):
     """
     df_orders = filtrar_order_id_deve_ser_unico(df_orders)
     df_orders = converter_order_purchase_timestamp(df_orders)
+    df_orders = converter_colunas_de_data(df_orders)
     df_merge = customer_id_existe_em_customers(df_orders, df_customers)
     pedidos_validos, pedidos_invalidos = filtrar_orders_validos(df_merge)
     pedidos_validos = filtrar_order_status_valido(pedidos_validos)

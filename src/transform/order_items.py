@@ -94,6 +94,27 @@ def filtrar_freight_value_positivo(df_merge):
     return df_merge[df_merge["freight_value"] > 0]
 
 
+# função genérica para converter todas essas colunas para datetime.
+@log_dataset("order_items")
+def converter_datas_faltantes(df_merge):
+    """
+    Converte as colunas restantes de data/hora para datetime.
+    """
+    colunas_para_converter = [
+        "order_approved_at",
+        "order_delivered_carrier_date",
+        "order_delivered_customer_date",
+        "order_estimated_delivery_date",
+    ]
+
+    for coluna in colunas_para_converter:
+        df_merge[coluna] = pd.to_datetime(
+            df_merge[coluna], dayfirst=True, errors="coerce"
+        )
+
+    return df_merge
+
+
 @log_dataset("order_items")
 def transformar_order_items(df_order_items, df_orders):
     """
@@ -110,5 +131,6 @@ def transformar_order_items(df_order_items, df_orders):
     df_merge = filtrar_shipping_limit_date_valida(df_merge)
     df_merge = filtrar_price_positivo(df_merge)
     df_merge = filtrar_freight_value_positivo(df_merge)
+    df_merge = converter_datas_faltantes(df_merge)
 
     return df_merge.drop(columns=["_merge"])
