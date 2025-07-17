@@ -16,6 +16,8 @@ psycopg2-binary = "^2.9.10"
 sqlalchemy = "^2.0.41"
 python-dotenv = "^1.1.1"
 loguru = "^0.7.3"
+streamlit = "^1.47.0"
+plotly-express = "^0.4.1"
 
 
 [tool.poetry.group.dev.dependencies]
