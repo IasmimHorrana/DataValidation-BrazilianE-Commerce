@@ -9,3 +9,5 @@ FROM
 WHERE 
     order_delivered_customer_date IS NOT NULL
     AND order_purchase_timestamp IS NOT NULL;
+
+*/

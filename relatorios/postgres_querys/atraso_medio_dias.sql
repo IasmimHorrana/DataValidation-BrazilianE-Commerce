@@ -4,3 +4,4 @@ FROM
     orders
 WHERE 
     order_delivered_customer_date::date > order_estimated_delivery_date::date;
+
