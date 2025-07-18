@@ -5,6 +5,8 @@ description = ""
 authors = ["Iasmim Horrana <horranaiasmim@gmail.com>"]
 readme = "README.md"
 
+package-mode = false
+
 [tool.poetry.dependencies]
 python = "^3.12"
 pandera = "^0.24.0"
