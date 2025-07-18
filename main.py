@@ -2,6 +2,7 @@ import os
 
 from dotenv import load_dotenv
 from sqlalchemy import create_engine
+from sqlalchemy.types import BigInteger, Boolean, DateTime, Float
 
 from src.extract import ler_csv_customers, ler_csv_order_items, ler_csv_orders
 from src.transform import (
@@ -63,15 +64,58 @@ def executar_etl(engine):
 
     # 4. Carga no banco de dados
     print("Salvando os dados no banco PostgreSQL...")
+
     df_customers_limpo.to_sql(
         "customers", engine, if_exists="replace", index=False
     )
-    df_orders_limpo.to_sql("orders", engine, if_exists="replace", index=False)
-    df_orders_invalidos.to_sql(
-        "orders_invalidos", engine, if_exists="replace", index=False
+
+    df_orders_limpo.to_sql(
+        "orders",
+        engine,
+        if_exists="replace",
+        index=False,
+        dtype={
+            "order_purchase_timestamp": DateTime(),
+            "order_approved_at": DateTime(),
+            "order_delivered_carrier_date": DateTime(),
+            "order_delivered_customer_date": DateTime(),
+            "order_estimated_delivery_date": DateTime(),
+        },
     )
+
+    df_orders_invalidos.to_sql(
+        "orders_invalidos",
+        engine,
+        if_exists="replace",
+        index=False,
+        dtype={
+            "order_purchase_timestamp": DateTime(),
+            "order_approved_at": DateTime(),
+            "order_delivered_carrier_date": DateTime(),
+            "order_delivered_customer_date": DateTime(),
+            "order_estimated_delivery_date": DateTime(),
+        },
+    )
+
     df_order_items_limpo.to_sql(
-        "order_items", engine, if_exists="replace", index=False
+        "order_items",
+        engine,
+        if_exists="replace",
+        index=False,
+        dtype={
+            "order_item_id": BigInteger(),
+            "shipping_limit_date": DateTime(),
+            "order_purchase_timestamp": DateTime(),
+            "order_approved_at": DateTime(),
+            "order_delivered_carrier_date": DateTime(),
+            "order_delivered_customer_date": DateTime(),
+            "order_estimated_delivery_date": DateTime(),
+            "price": Float(),
+            "freight_value": Float(),
+            "data_ok": Boolean(),
+            "aprovacao_valida": Boolean(),
+            "customer_zip_code_prefix": BigInteger(),
+        },
     )
 
     print("Pipeline concluído com sucesso!")
