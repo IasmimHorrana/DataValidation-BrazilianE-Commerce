@@ -2,6 +2,9 @@
 
 Projeto autoral focado em monitoramento e análise da performance logística no e-commerce brasileiro a partir do dataset público da Olist. O pipeline ETL implementado garante qualidade, validação e visualização geográfica dos dados para facilitar a tomada de decisão.
 
+🔗 Documentação disponível em: [Clique aqui](https://iasmimhorrana.github.io/DataValidation-BrazilianE-Commerce/)
+
+
 ---
 
 ### 🔍 Análise Exploratória Inicial
@@ -46,27 +49,6 @@ As regras de validação foram implementadas com `Pydantic`, por meio de três c
 - ✅ Documentar todo o projeto e facilitar sua manutenção e extensão
 
 ---
-### 🐳 Subindo o PostgreSQL com Docker + PgAdmin
-
-### Pré-requisitos
-
-- [Docker](https://www.docker.com/)
-- O projeto já inclui um `docker-compose.yml` com os serviços do banco PostgreSQL e do PgAdmin configurados.
-
-
-### Clone este repositório:
-
-```bash
-git clone https://github.com/seu_usuario/seu_repositorio.git
-```
-```
-cd seu_repositorio
-```
-```
-docker-compose up -d
-```
-
-----
 ### 📚 Fonte dos Dados
 
 Kaggle: [Brazilian E-Commerce Public Dataset by Olist](https://www.kaggle.com/datasets/olistbr/brazilian-ecommerce)
