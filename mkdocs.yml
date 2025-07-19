@@ -1,0 +1,15 @@
+site_name: Radar de Entregas 
+site_url: https://github.com/IasmimHorrana/DataValidation-BrazilianE-Commerce
+site_description: Pipeline ETL para análise de performance logística
+site_author: Iasmim Horrana
+
+nav:
+  - Home: index.md
+  - Instalação: instalacao.md
+  - Padronização de Código: padronizacao.md
+  - Arquitetura: arquitetura.md
+  - KPIs: kpis.md
+  - Dashboards: resultados.md
+
+theme:
+  name: material  

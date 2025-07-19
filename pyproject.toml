@@ -20,6 +20,8 @@ python-dotenv = "^1.1.1"
 loguru = "^0.7.3"
 streamlit = "^1.47.0"
 plotly-express = "^0.4.1"
+mkdocs = "^1.6.1"
+mkdocs-material = "^9.6.15"
 
 
 [tool.poetry.group.dev.dependencies]
